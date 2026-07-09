@@ -1,0 +1,45 @@
+name: StyleBox AI - Automated Test Pipeline
+
+# Run this workflow every time code is pushed, or a pull request is opened,
+# against the main branch.
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: Run Jest Test Suite
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Get the latest code from the repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Install Node.js (needed to run npm / jest)
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"   # caches node_modules downloads to speed up future runs
+
+      # 3. Install project dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # 4. Run the Jest test suite created for Assignment 4 Task 1
+      - name: Run tests
+        run: npm test
+
+      # 5. Always show a clear pass/fail summary in the Actions log,
+      #    even if the previous step failed.
+      - name: Report result
+        if: always()
+        run: |
+          if [ "${{ job.status }}" = "success" ]; then
+            echo "✅ All StyleBox AI tests passed."
+          else
+            echo "❌ One or more tests failed — check the 'Run tests' step above for details."
+          fi
