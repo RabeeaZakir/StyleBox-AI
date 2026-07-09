@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>StyleBox AI</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- =========================
+            HEADER
+    ========================== -->
+
+    <header>
+      <nav class="navbar">
+        <div class="logo">
+          <i class="fa-solid fa-shirt"></i>
+
+          <h2>StyleBox AI</h2>
+        </div>
+
+        <div class="nav-right">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search your wardrobe..."
+            />
+          </div>
+
+          <button id="darkMode">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- =========================
+        HERO SECTION
+========================== -->
+
+    <section class="hero">
+      <div class="hero-left">
+        <span class="badge"> ✨ AI Powered Smart Wardrobe </span>
+
+        <h1>
+          Build Your Perfect
+          <br />
+          Digital Wardrobe
+        </h1>
+
+        <p>
+          Organize your clothes, discover stylish outfit combinations, save your
+          favorite looks, and let AI recommend the perfect outfit for every
+          occasion.
+        </p>
+
+        <div class="hero-buttons">
+          <button
+            class="primary-btn"
+            onclick="
+              document
+                .getElementById('addClothes')
+                .scrollIntoView({ behavior: 'smooth' })
+            "
+          >
+            <i class="fa-solid fa-plus"></i>
+            Add Clothing
+          </button>
+
+          <button
+            class="secondary-btn"
+            onclick="
+              document
+                .getElementById('outfitSection')
+                .scrollIntoView({ behavior: 'smooth' })
+            "
+          >
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            AI Outfit
+          </button>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <img src="assets/images/hero.png" alt="StyleBox AI Hero" />
+      </div>
+    </section>
+
+    <!-- =========================
+            DASHBOARD
+    ========================== -->
+
+    <section class="dashboard">
+      <div class="card">
+        <i class="fa-solid fa-shirt"></i>
+
+        <h2 id="totalItems">0</h2>
+
+        <p>Total Clothes</p>
+      </div>
+
+      <div class="card">
+        <i class="fa-solid fa-heart"></i>
+
+        <h2 id="favorites">0</h2>
+
+        <p>Favorites</p>
+      </div>
+
+      <div class="card">
+        <i class="fa-solid fa-layer-group"></i>
+
+        <h2 id="totalCategories">0</h2>
+
+        <p>Categories</p>
+      </div>
+
+      <div class="card">
+        <i class="fa-solid fa-palette"></i>
+
+        <h2 id="popularColor">-</h2>
+
+        <p>Popular Color</p>
+      </div>
+    </section>
+
+    <!-- =========================
+            FILTERS
+    ========================== -->
+
+    <section class="filters">
+      <button class="active">All</button>
+
+      <button>Top</button>
+
+      <button>Bottom</button>
+
+      <button>Shoes</button>
+
+      <button>Accessory</button>
+
+      <button>Summer</button>
+
+      <button>Winter</button>
+
+      <button>Casual</button>
+
+      <button>Formal</button>
+    </section>
+
+    <!-- =========================
+            WARDROBE
+    ========================== -->
+
+    <section class="clothes-section">
+      <div class="section-title">
+        <h2>My Wardrobe</h2>
+      </div>
+
+      <div class="clothes-grid" id="clothesGrid"></div>
+    </section>
+    <!-- =========================
+            ADD CLOTHING
+    ========================== -->
+
+    <section class="add-clothes" id="addClothes">
+      <div class="form-container">
+        <h2>Add New Clothing</h2>
+
+        <form id="itemForm">
+          <input type="text" id="itemName" placeholder="Item Name" required />
+
+          <input type="text" id="itemBrand" placeholder="Brand" required />
+
+          <select id="itemCategory" required>
+            <option value="">Select Category</option>
+
+            <option value="Top">Top</option>
+
+            <option value="Bottom">Bottom</option>
+
+            <option value="Shoes">Shoes</option>
+
+            <option value="Accessory">Accessory</option>
+          </select>
+
+          <input type="text" id="itemColor" placeholder="Color" required />
+
+          <select id="itemSeason">
+            <option value="">Select Season</option>
+
+            <option value="Summer">Summer</option>
+
+            <option value="Winter">Winter</option>
+          </select>
+
+          <select id="itemOccasion">
+            <option value="">Select Occasion</option>
+
+            <option value="Casual">Casual</option>
+
+            <option value="Formal">Formal</option>
+
+            <option value="Party">Party</option>
+          </select>
+
+          <input type="file" id="itemImage" accept="image/*" />
+
+          <img
+            id="preview"
+            src=""
+            alt="Preview"
+            style="
+              display: none;
+              width: 180px;
+              border-radius: 15px;
+              margin: auto;
+            "
+          />
+
+          <button type="submit">
+            <i class="fa-solid fa-plus"></i>
+
+            Save Clothing
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- =========================
+            AI OUTFIT
+    ========================== -->
+
+    <section class="outfit" id="outfitSection">
+      <h2>AI Outfit Recommendation</h2>
+
+      <div class="outfit-grid">
+        <div class="outfit-card">
+          👕
+
+          <h3>Top</h3>
+        </div>
+
+        <div class="outfit-card">
+          👖
+
+          <h3>Bottom</h3>
+        </div>
+
+        <div class="outfit-card">
+          👟
+
+          <h3>Shoes</h3>
+        </div>
+
+        <div class="outfit-card">
+          ⌚
+
+          <h3>Accessory</h3>
+        </div>
+      </div>
+
+      <button class="generate">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+        Generate Outfit
+      </button>
+
+      <div id="matchScore"></div>
+    </section>
+
+    <!-- =========================
+            FOOTER
+    ========================== -->
+
+    <footer>
+      <p>© 2026 StyleBox AI | Smart Wardrobe Assistant</p>
+    </footer>
+
+    <!-- =========================
+            JAVASCRIPT
+    ========================== -->
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
